@@ -1,9 +1,9 @@
 "use strict";
 
-const utils = require("../utils");
-const setOptionsModel = require('./models/setOptions');
-const buildAPIModel = require('./models/buildAPI');
-const loginHelperModel = require('./models/loginHelper');
+const utils = require("./utils");
+const setOptionsModel = require('./setOptions');
+const buildAPIModel = require('./buildAPI');
+const loginHelperModel = require('./loginHelper');
 
 let globalOptions = {};
 let ctx = null;

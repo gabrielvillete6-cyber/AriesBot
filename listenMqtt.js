@@ -1,10 +1,10 @@
 "use strict";
-const utils = require('../../../utils');
+const utils = require('./utils');
 const mqtt = require('mqtt');
 const websocket = require('websocket-stream');
 const HttpsProxyAgent = require('https-proxy-agent');
 const EventEmitter = require('events');
-const { parseDelta } = require('./deltas/value');
+const { parseDelta } = require('./value');
 
 let form = {};
 let getSeqID;

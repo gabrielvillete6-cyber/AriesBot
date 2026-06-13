@@ -2,7 +2,7 @@
 
 const url = require("url");
 const querystring = require("querystring");
-const { getType } = require("../../constants");
+const { getType } = require("./constants");
 
 function getExtension(original_extension, fullFileName = "") {
     if (original_extension) {

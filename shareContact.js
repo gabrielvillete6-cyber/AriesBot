@@ -1,7 +1,7 @@
 /* eslint-disable linebreak-style */
 "use strict";
 
-const utils = require('../../../utils');
+const utils = require('./utils');
 
 /**
  * @module shareContact

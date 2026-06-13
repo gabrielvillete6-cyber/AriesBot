@@ -1048,4 +1048,8 @@ module.exports = {
   formatPresence,
 
   decodeClientPayload,
+
+  parseAndCheckLogin,
+
+  saveCookies,
 };

@@ -1,6 +1,6 @@
 "use strict";
 // @ChoruOfficial
-const utils = require('../../../utils');
+const utils = require('./utils');
 
 /**
  * @param {Object} defaultFuncs

@@ -1,6 +1,6 @@
 "use strict";
 
-const utils = require('../../../../utils'); // Changed from @utils to relative path
+const utils = require('./utils'); // Changed from @utils to relative path
 
 
 function parseDelta(defaultFuncs, api, ctx, globalCallback, v) {

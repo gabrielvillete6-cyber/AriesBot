@@ -1,6 +1,6 @@
 "use strict";
 
-const { NUM_TO_MONTH, NUM_TO_DAY } = require("../../constants");
+const { NUM_TO_MONTH, NUM_TO_DAY } = require("./constants");
 
 /**
  * Formats a Date object into a GMT string.

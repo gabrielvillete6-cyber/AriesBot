@@ -1,6 +1,6 @@
 "use strict";
 
-const formatID = require('../value/formatID');
+const formatID = require('./formatID');
 const { _formatAttachment } = require('./formatAttachment');
 
 function getAdminTextMessageType(type) {
