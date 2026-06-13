@@ -1,11 +1,11 @@
 "use strict";
 
 const stream = require("stream");
-const formatID = require('./value/formatID');
-const formatDate = require('./value/formatDate');
-const formatCookie = require('./value/formatCookie');
-const { _formatAttachment, formatAttachment } = require('./data/formatAttachment');
-const { formatDeltaMessage, formatDeltaEvent, formatDeltaReadReceipt, getAdminTextMessageType } = require('./data/formatDelta');
+const formatID = require('./formatID');
+const formatDate = require('./formatDate');
+const formatCookie = require('./formatCookie');
+const { _formatAttachment, formatAttachment } = require('./formatAttachment');
+const { formatDeltaMessage, formatDeltaEvent, formatDeltaReadReceipt, getAdminTextMessageType } = require('./formatDelta');
 
 function isReadableStream(obj) {
     return obj instanceof stream.Stream && typeof obj._read == "function" && typeof obj._readableState == "object";
