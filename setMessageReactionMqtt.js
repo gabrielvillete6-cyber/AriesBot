@@ -1,7 +1,7 @@
 // @ChoruOfficial
 'use strict';
 
-const utils = require('../../../utils');
+const utils = require('./utils');
 
 function isCallable(func) {
   try {

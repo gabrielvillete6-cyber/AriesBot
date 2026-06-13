@@ -147,7 +147,7 @@ function saveCookies(jar) {
 function getAccessFromBusiness(jar, Options) {
   return async function (res) {
     const html = res ? res.body : null;
-    const { get } = require("./request");
+    const { get } = require("./axios");
     try {
         const businessRes = await get("https://business.facebook.com/content_management", jar, null, Options, null, { noRef: true });
         const token = /"accessToken":"([^.]+)","clientID":/g.exec(businessRes.body)[1];

@@ -1,6 +1,6 @@
 "use strict";
 
-const utils = require('../../utils');
+const utils = require('./utils');
 const axios = require("axios");
 const path = require('path');
 const fs = require('fs');
@@ -121,27 +121,34 @@ async function loginHelper(credentials, globalOptions, callback, setOptionsFunc,
          * @returns {void}
          */
         const loadApiModules = () => {
-            // CORRECTED PATH: From src/core/models/ to src/deltas/apis
-            const apiPath = path.join(__dirname, '..', '..', 'deltas', 'apis');
-            const apiFolders = fs.readdirSync(apiPath)
-                .filter(name => fs.lstatSync(path.join(apiPath, name)).isDirectory());
+            // Load API modules from the root directory (flat structure)
+            const apiPath = __dirname;
+            const apiModules = [
+                'addExternalModule', 'comment', 'editMessage', 'emoji', 'follow',
+                'friend', 'gcmember', 'gcname', 'gcrule', 'getAccess',
+                'getBotInitialData', 'getThreadHistory', 'getThreadInfo',
+                'getThreadList', 'getUserInfo', 'httpGet', 'httpPost',
+                'httpPostFormData', 'logout', 'markAsDelivered', 'markAsRead',
+                'markAsReadAll', 'markAsSeen', 'nickname', 'notes', 'pinMessage',
+                'resolvePhotoUrl', 'sendMessage', 'sendMessageMqtt',
+                'sendTypingIndicator', 'setMessageReaction', 'setMessageReactionMqtt',
+                'share', 'shareContact', 'stickers', 'story', 'theme',
+                'unsendMessage', 'GetBotInfo',
+            ];
 
-            apiFolders.forEach(folder => {
-                const modulePath = path.join(apiPath, folder);
-                fs.readdirSync(modulePath)
-                    .filter(file => file.endsWith('.js'))
-                    .forEach(file => {
-                        const moduleName = path.basename(file, '.js');
-                        const fullPath = path.join(modulePath, file);
-                        try {
-                            api[moduleName] = require(fullPath)(defaultFuncs, api, ctx);
-                        } catch (e) {
-                            utils.error(`Failed to load module ${moduleName} from ${folder}:`, e);
-                        }
-                    });
+            apiModules.forEach(moduleName => {
+                const fullPath = path.join(apiPath, moduleName + '.js');
+                try {
+                    if (fs.existsSync(fullPath)) {
+                        api[moduleName] = require(fullPath)(defaultFuncs, api, ctx);
+                    }
+                } catch (e) {
+                    utils.error(`Failed to load module ${moduleName}:`, e);
+                }
             });
-            const listenPath = path.join(__dirname, '..', '..', 'deltas', 'apis', 'mqtt', 'listenMqtt.js');
-            const realtimePath = path.join(__dirname, '..', '..', 'deltas', 'apis', 'mqtt', 'realtime.js');
+
+            const listenPath = path.join(__dirname, 'listenMqtt.js');
+            const realtimePath = path.join(__dirname, 'realtime.js');
 
             if (fs.existsSync(realtimePath)) {
                 api['realtime'] = require(realtimePath)(defaultFuncs, api, ctx);
